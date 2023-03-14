@@ -17,6 +17,15 @@ elif [ $1 = 'backup' ]; then
   cp $filename "../data/$today-users.db.backup"
 elif [ $1 = 'restore' ]; then
   find "../data/" -type f -name '[0-9][0-9][0-9][0-9]-[0-1][0-9]-[0-3][0-9]*' -print0 | xargs -0 ls -tl | head -1 | awk '{print $NF}' | xargs cat > $filename
+elif [ $1 = "find" ]; then
+  echo "Enter user name:"
+    read name
+  while read -r line
+  do
+    if [[ "$line" == *"$name"*  ]]; then
+        echo "$line"
+    fi
+  done < "$filename"
 elif [[ $1 = "" || $1 = "help" ]]; then
   echo "--add adds user to user.db file"
   echo "--backup creates back up file"

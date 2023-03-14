@@ -24,10 +24,12 @@ elif [ $1 = "find" ]; then
       echo "$line"
     fi
   done <"$filename"
-elif [ $1 = "list" ]; then
+elif [[ $1 = "list" && $2 != "--inverse" ]]; then
   while read -r line; do
     echo "$line"
-  done <"$filename"
+  done < "$filename"
+elif [[ $1 = "list" && $2 = "--inverse" ]]; then
+  cat $filename | tac
 elif [[ $1 = "" || $1 = "help" ]]; then
   echo "--add adds user to user.db file"
   echo "--backup creates back up file"

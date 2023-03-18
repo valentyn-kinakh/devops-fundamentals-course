@@ -108,3 +108,5 @@ dist
 .tern-port
 
 .idea
+
+./lab_1/scripts/shop-angular-cloudfront
